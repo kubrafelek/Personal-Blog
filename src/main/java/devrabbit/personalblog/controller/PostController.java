@@ -13,19 +13,19 @@ import java.util.Collection;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/posts")
+@RequestMapping("/api/post")
 public class PostController {
 
     @Autowired
     private PostServiceImpl postService;
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<?> create(@Validated @RequestBody PostRequestDto postDto){
         postService.create(postDto);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/all")
+    @GetMapping("/list")
     public ResponseEntity<Collection<PostResponseDto>> listAllPosts(){
         return ResponseEntity.ok(postService.getPosts());
     }

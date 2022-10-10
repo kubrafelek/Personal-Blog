@@ -2,8 +2,10 @@ package devrabbit.personalblog.controller;
 
 import devrabbit.personalblog.dto.AuthenticationRequest;
 import devrabbit.personalblog.dto.AuthenticationResponse;
+import devrabbit.personalblog.dto.UserRegisterRequest;
 import devrabbit.personalblog.helper.JWTHelper;
 import devrabbit.personalblog.security.UserDetail;
+import devrabbit.personalblog.service.AuthService;
 import devrabbit.personalblog.validator.AuthenticationRequestValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,8 @@ public class AuthenticationController {
     private final AuthenticationManager authenticationManager;
     private final JWTHelper jwtHelper;
 
+    private final AuthService authService;
+
     @PostMapping(path = "/sign-in")
     public ResponseEntity<?> signIn(@RequestBody AuthenticationRequest authenticationRequest) {
         authenticationRequestValidator.validate(authenticationRequest);
@@ -42,5 +46,10 @@ public class AuthenticationController {
                         .stream()
                         .map(GrantedAuthority::getAuthority)
                         .collect(Collectors.toSet())));
+    }
+
+    @PostMapping(path = "/register")
+    public ResponseEntity<?> register(@RequestBody UserRegisterRequest request) {
+        return ResponseEntity.ok(authService.register(request));
     }
 }

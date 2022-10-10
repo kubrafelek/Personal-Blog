@@ -27,7 +27,5 @@ public class BusinessServiceOperationException {
         public UserAlreadyExists(String message, HttpStatus status) {
             super(message);
         }
-
-
     }
 }

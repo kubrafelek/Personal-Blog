@@ -71,9 +71,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/auth/sign-in").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/auth/sign-up").permitAll()
-                .antMatchers("/h2-console", "/h2-console/**","/console/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+                .antMatchers("/h2", "/h2-console/**","/console/**").permitAll()
                 .antMatchers("/").permitAll()
+                .antMatchers("/api/post/**").permitAll()
                 .antMatchers("/v2/api-docs",
                         "/configuration/ui",
                         "/swagger-resources/**",

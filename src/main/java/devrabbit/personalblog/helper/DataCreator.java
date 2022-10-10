@@ -19,7 +19,7 @@ public final class DataCreator {
         user.setUsername("kubrafelek");
         user.setPassword(passwordEncoder.encode("password"));
         Role adminRole = new Role();
-        adminRole.setName("ROLE_ADMIN");
+        adminRole.setName("ADMIN");
         user.addRoles(Collections.singleton(adminRole));
         return Collections.singletonList(user);
     }
