@@ -1,13 +1,14 @@
 package devrabbit.personalblog.validator;
 
 import devrabbit.personalblog.dto.AuthenticationRequest;
+import devrabbit.personalblog.dto.UserLoginRequest;
 import org.springframework.util.StringUtils;
 
 import java.util.Objects;
 
 public class AuthenticationRequestValidator {
 
-    public void validate(AuthenticationRequest authenticationRequest) {
+    public void validate(UserLoginRequest authenticationRequest) {
         if (Objects.isNull(authenticationRequest)) {
             throw new IllegalArgumentException("AuthenticationRequest can't be null");
         }

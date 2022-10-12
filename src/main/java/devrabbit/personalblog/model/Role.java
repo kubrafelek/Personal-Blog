@@ -1,5 +1,6 @@
 package devrabbit.personalblog.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +17,7 @@ public class Role {
 
     private String name;
 
+    @JsonBackReference
     @ManyToOne
     private User user;
 }

@@ -1,6 +1,8 @@
 package devrabbit.personalblog.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import devrabbit.personalblog.model.enums.UserStatus;
 import lombok.Data;
 
@@ -18,6 +20,8 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @JsonProperty("fullname")
     private String fullName;
 
     @Column(unique = true)
@@ -42,6 +46,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<Post> posts;
 
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
