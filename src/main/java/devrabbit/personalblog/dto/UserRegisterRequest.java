@@ -1,4 +1,4 @@
 package devrabbit.personalblog.dto;
 
-public record UserRegisterRequest(String fullName, String username, String email, String password) {
+public record UserRegisterRequest(String fullname, String username, String email, String password) {
 }

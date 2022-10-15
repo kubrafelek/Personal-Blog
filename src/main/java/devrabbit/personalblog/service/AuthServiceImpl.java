@@ -24,6 +24,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.sql.Time;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -69,6 +72,9 @@ public class AuthServiceImpl implements AuthService {
         User user = new User();
         user.setEmail(request.email());
         user.setUsername(request.username());
+        user.setFullname(request.fullname());
+        user.setLastSuccessfullyLoggedInTime(new Date(Date.from(Instant.now()).getTime()));
+        user.setLastFailureLoggedInTime(new Date(Date.from(Instant.now()).getTime()));
         user.setPassword(passwordEncoder.encode(request.password()));
 
         Role role = new Role();
