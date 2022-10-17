@@ -1,6 +1,5 @@
 package devrabbit.personalblog.validator;
 
-import devrabbit.personalblog.dto.AuthenticationRequest;
 import devrabbit.personalblog.dto.UserLoginRequest;
 import org.springframework.util.StringUtils;
 

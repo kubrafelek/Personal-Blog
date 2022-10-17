@@ -7,7 +7,7 @@ import java.util.Collection;
 
 public interface PostService {
 
-    void create(PostRequestDto postRequestDto);
+    PostResponseDto create(PostRequestDto postRequestDto);
 
     PostRequestDto getPost(Long id);
 

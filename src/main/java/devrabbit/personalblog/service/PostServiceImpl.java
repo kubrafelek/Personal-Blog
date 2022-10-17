@@ -21,11 +21,12 @@ public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
     private final PostConverter postConverter;
 
-
     @Override
-    public void create(PostRequestDto postRequestDto) {
+    public PostResponseDto create(PostRequestDto postRequestDto) {
         Post post = postConverter.toPost(postRequestDto);
         postRepository.save(post);
+        return new PostResponseDto(post.getId(), post.getTitle(), post.getBody(), post.getCreationDate(),
+                post.getReviews(), post.getUser(), post.isDeleted());
     }
 
     @Override

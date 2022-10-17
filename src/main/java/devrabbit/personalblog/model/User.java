@@ -18,7 +18,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @JsonProperty("fullname")
@@ -43,6 +43,7 @@ public class User {
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date lastFailureLoggedInTime;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<Post> posts;
 
@@ -52,7 +53,6 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-
 
     public void addRoles(Set<Role> roles) {
         roles.forEach(role -> role.setUser(this));

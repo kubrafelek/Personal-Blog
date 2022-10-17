@@ -20,9 +20,8 @@ public class PostController {
     private PostServiceImpl postService;
 
     @PostMapping("/save")
-    public ResponseEntity<?> create(@Validated @RequestBody PostRequestDto postDto){
-        postService.create(postDto);
-        return ResponseEntity.ok().build();
+    public PostResponseDto create(@Validated @RequestBody PostRequestDto postDto) {
+        return postService.create(postDto);
     }
 
     @GetMapping("/list")
