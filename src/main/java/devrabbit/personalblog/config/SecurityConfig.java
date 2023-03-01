@@ -70,11 +70,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/auth/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/auth/register").permitAll()
                 .antMatchers("/h2", "/h2-console/**","/console/**").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers("/api/post/**").permitAll()
+                .antMatchers("/api/v1/post/**").permitAll()
                 .antMatchers("/v2/api-docs",
                         "/configuration/ui",
                         "/swagger-resources/**",

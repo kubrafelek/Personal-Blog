@@ -13,7 +13,7 @@ import java.util.Collection;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/post")
+@RequestMapping("/api/v1/post")
 public class PostController {
 
     @Autowired
@@ -29,12 +29,12 @@ public class PostController {
         return ResponseEntity.ok(postService.getPosts());
     }
 
-    @GetMapping("/get/{post_id}")
+    @GetMapping(value = "/get/{postId}")
     public ResponseEntity<PostRequestDto> getPostById(@PathVariable Long postId){
         return ResponseEntity.ok(postService.getPost(postId));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{postId}")
     public ResponseEntity<?> delete(@PathVariable Long id){
         postService.delete(id);
         return ResponseEntity.ok().build();
