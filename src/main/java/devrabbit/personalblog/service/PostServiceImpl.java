@@ -26,7 +26,7 @@ public class PostServiceImpl implements PostService {
         Post post = postConverter.toPost(postRequestDto);
         postRepository.save(post);
         return new PostResponseDto(post.getId(), post.getTitle(), post.getBody(), post.getCreationDate(),
-                post.getReviews(), post.getUser(), post.isDeleted());
+                post.getReviews(), post.getUser().getId(), post.isDeleted());
     }
 
     @Override

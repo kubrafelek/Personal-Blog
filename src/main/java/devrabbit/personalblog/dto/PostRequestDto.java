@@ -1,6 +1,8 @@
 package devrabbit.personalblog.dto;
 
 public record PostRequestDto(
-         String title,
-         String body
-) {}
+        Long authorId,
+        String title,
+        String body
+) {
+}

@@ -5,6 +5,8 @@ import devrabbit.personalblog.dto.PostResponseDto;
 import devrabbit.personalblog.model.Post;
 import devrabbit.personalblog.model.Review;
 import devrabbit.personalblog.model.User;
+import devrabbit.personalblog.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -12,13 +14,16 @@ import java.util.Date;
 @Component
 public class PostConverterImpl implements PostConverter {
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public Post toPost(PostRequestDto postRequestDto) {
 
         Post post = new Post();
         post.setTitle(postRequestDto.title());
         post.setBody(postRequestDto.body());
-        post.setUser(new User());
+        post.setUser(userRepository.getById(postRequestDto.authorId()));
         post.setReviews(null);
         post.setCreationDate(new Date());
         post.setDeleted(false);
@@ -28,7 +33,7 @@ public class PostConverterImpl implements PostConverter {
 
     @Override
     public PostRequestDto toPostRequestDto(Post post) {
-        return new PostRequestDto(post.getTitle(),
+        return new PostRequestDto(post.getUser().getId(), post.getTitle(),
                 post.getBody());
     }
 
@@ -39,7 +44,7 @@ public class PostConverterImpl implements PostConverter {
                 post.getBody(),
                 post.getCreationDate(),
                 post.getReviews(),
-                post.getUser(),
+                post.getUser().getId(),
                 post.isDeleted());
     }
 }

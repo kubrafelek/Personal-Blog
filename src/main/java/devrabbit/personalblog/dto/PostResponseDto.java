@@ -12,6 +12,6 @@ public record PostResponseDto(
         String body,
         Date creationDate,
         Collection<Review> reviews,
-        User user,
+        Long authorId,
         boolean isDeleted
 ) {}

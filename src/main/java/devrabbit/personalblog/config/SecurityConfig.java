@@ -75,6 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2", "/h2-console/**","/console/**").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/api/v1/post/**").permitAll()
+                .antMatchers("/api/v1/post/delete/").hasRole("ADMIN")
                 .antMatchers("/v2/api-docs",
                         "/configuration/ui",
                         "/swagger-resources/**",
