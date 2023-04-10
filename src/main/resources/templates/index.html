@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton-framework/1.1.1/skeleton.min.css">
+</head>
+<body>
+<div id="root" class="container">
+    <h1>My Blog</h1>
+    <hr>
+    <div class="row">
+        <div class="twelve columns">
+            <h1>All Posts</h1>
+            <ul>
+                <li v-for="post in posts">
+                    <h3>{{ post.title }}</h3>
+                    <h3>{{ post.body }}</h3>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://unpkg.org/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+<script>
+    var app = new Vue({
+        el: '#root',
+        data: {posts: []},
+        mounted() {
+            this.fetchPosts();
+        },
+        methods: {
+            fetchPosts() {
+                axios.get('/api/v1/post/posts').then(function (response) {
+                    this.posts = response.data;
+                }.bind(this));
+            },
+            getLink(post) {
+                return '/post/' + post.id;
+            }
+        }
+    });
+</script>
+</html>
